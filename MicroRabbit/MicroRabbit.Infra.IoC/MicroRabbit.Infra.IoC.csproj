@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MicroRabbit.Infa.Bus\MicroRabbit.Infa.Bus.csproj" />
+    <ProjectReference Include="..\MiroRabbit.Domain.Core\MiroRabbit.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>
