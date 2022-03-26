@@ -1,6 +1,11 @@
+using MicroRabbit.Banking.Domain.Events;
 using MicroRabbit.Infra.IoC;
 using MicroRabbit.Transfer.Data.Context;
+using MicroRabbit.Transfer.Domain.EventHandlers;
+using MicroRabbit.Transfer.Domain.Events;
 using Microsoft.EntityFrameworkCore;
+using MiroRabbit.Domain.Core.Bus;
+using TrasferCreatedEvent = MicroRabbit.Transfer.Domain.Events.TrasferCreatedEvent;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +21,11 @@ DependencyContainer.RegisterServices(builder.Services);
 
 // Add services to the container.
 
-
+using (ServiceProvider serviceProvider = builder.Services.BuildServiceProvider())
+{
+    var eventBus = serviceProvider.GetRequiredService<IEventBus>();
+    eventBus.Subscribe<TrasferCreatedEvent, TransferEventHandler>();
+}
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
