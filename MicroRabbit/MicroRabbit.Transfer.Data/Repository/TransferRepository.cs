@@ -18,6 +18,14 @@ namespace MicroRabbit.Transfer.Data.Repository
         {
             _context = context;
         }
+
+        public TransferLog Add(TransferLog log)
+        {
+            _context.Add(log);
+            _context.SaveChanges();
+            return log;
+        }
+
         public IEnumerable<TransferLog> GetTransferLogs()
         {
             return _context.TransferLogs;
